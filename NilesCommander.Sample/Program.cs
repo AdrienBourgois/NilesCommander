@@ -1,13 +1,15 @@
-﻿using System;
-using System.Threading.Tasks;
-using NilesCommander.Core;
+﻿using NilesCommander.Core;
 using NilesCommander.Terminal;
+using NilesCommander.WinForm;
 
 namespace NilesCommander.Sample;
 
 internal class Program
 {
-    private static bool looping = true;
+    private static TaskCompletionSource taskCompletionSource;
+
+    private static WinFormComponent winFormComponent;
+    private static TerminalComponent terminalComponent;
 
     private static async Task Main(string[] _args)
     {
@@ -15,23 +17,29 @@ internal class Program
 
         Core.NilesCommander niles_commander = new(niles_commander_configuration);
 
-        niles_commander.AddComponent<TerminalComponent, TerminalConfiguration>(new TerminalConfiguration());
+        winFormComponent = niles_commander.CreateComponent<WinFormComponent, WinFormConfiguration>(new WinFormConfiguration());
+        terminalComponent = niles_commander.CreateComponent<TerminalComponent, TerminalConfiguration>(new TerminalConfiguration());
         niles_commander.Initialize();
 
         niles_commander.CommandProvided += OnCommandProvided;
 
-        while (looping)
-        {
-            await Task.Delay(2000);
-            niles_commander.Log(Log.LogSeverity.Log, Log.LogSource.Niles, "Loop");
-        }
+        taskCompletionSource = new TaskCompletionSource();
 
-        niles_commander.Dispose();
+        await taskCompletionSource.Task.ConfigureAwait(false);
+
+        niles_commander.Close();
     }
 
     private static void OnCommandProvided(string _command)
     {
-        if (_command == "stop")
-            looping = false;
+        switch (_command)
+        {
+            case "stop":
+                taskCompletionSource.SetResult();
+                break;
+            case "openWindow":
+                winFormComponent.RunForm();
+                break;
+        }
     }
 }

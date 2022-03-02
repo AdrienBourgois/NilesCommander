@@ -1,10 +1,9 @@
 ﻿using NilesCommander.Core.Components;
 
-namespace NilesCommander.Terminal
+namespace NilesCommander.Terminal;
+
+public class TerminalConfiguration : ComponentConfiguration
 {
-    public class TerminalConfiguration : ComponentConfiguration
-    {
-        public int HistoryLength = -1;
-        public int HistoryDisplayedHeight;
-    }
+    public int HistoryLength = -1;
+    public int HistoryDisplayedHeight;
 }

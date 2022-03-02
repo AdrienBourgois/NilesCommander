@@ -1,17 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>disable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <OutputType>Library</OutputType>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NilesCommander.Console\NilesCommander.Terminal.csproj" />
     <ProjectReference Include="..\NilesCommander.Core\NilesCommander.Core.csproj" />
-    <ProjectReference Include="..\NilesCommander.WinForm\NilesCommander.WinForm.csproj" />
   </ItemGroup>
 
 </Project>

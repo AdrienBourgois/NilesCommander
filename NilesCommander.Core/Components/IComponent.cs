@@ -1,13 +1,12 @@
-﻿using System;
+﻿namespace NilesCommander.Core.Components;
 
-namespace NilesCommander.Core.Components
+public interface IComponent
 {
-    public interface IComponent : IDisposable
-    {
-        public ComponentConfiguration Configuration { get; set; }
+    public ComponentConfiguration Configuration { get; set; }
 
-        public void SetComponentConfiguration(ComponentConfiguration _configuration);
+    public void SetComponentConfiguration(ComponentConfiguration _configuration);
 
-        public bool Initialize();
-    }
+    public bool Initialize();
+
+    public bool Close();
 }

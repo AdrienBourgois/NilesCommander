@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using NilesCommander.Core.Components;
+﻿using NilesCommander.Core.Components;
 
 namespace NilesCommander.Core;
 
-public class NilesCommander : IDisposable
+public class NilesCommander
 {
     public delegate void CommandProvidedDelegate(string _command);
 
@@ -12,12 +10,11 @@ public class NilesCommander : IDisposable
 
     public NilesCommanderConfiguration NilesCommanderConfiguration { get; init; }
 
+    public event LogProvidedDelegate LogProvided;
     public event CommandProvidedDelegate CommandProvided;
 
-    public event LogProvidedDelegate LogProvided;
-
+    private List<IComponent> components = new();
     private List<IInputComponent> inputs = new();
-
     private List<IOutputComponent> outputs = new();
 
     public NilesCommander(NilesCommanderConfiguration _nilesCommanderConfiguration)
@@ -25,7 +22,7 @@ public class NilesCommander : IDisposable
         NilesCommanderConfiguration = _nilesCommanderConfiguration;
     }
 
-    public void AddComponent<T, ComponentConfig>(ComponentConfig _config) where T : IComponent, new() where ComponentConfig : ComponentConfiguration
+    public T CreateComponent<T, ComponentConfig>(ComponentConfig _config) where T : IComponent, new() where ComponentConfig : ComponentConfiguration
     {
         T component = new();
         component.SetComponentConfiguration(_config);
@@ -38,6 +35,10 @@ public class NilesCommander : IDisposable
 
         if (component is IOutputComponent output_component)
             outputs.Add(output_component);
+
+        components.Add(component);
+
+        return component;
     }
 
     private void OnCommandProvided(string _command)
@@ -49,14 +50,11 @@ public class NilesCommander : IDisposable
 
     public void Initialize()
     {
-        foreach (IInputComponent input_component in inputs)
-            input_component.Initialize();
-
-        foreach (IOutputComponent output_component in outputs)
-            output_component.Initialize();
+        foreach (IComponent component in components)
+            component.Initialize();
     }
 
-    public void Log(Log.LogSeverity _severity, Log.LogSource _source, string _log, bool _sendToServer = false)
+    public void Log(Log.LogSeverity _severity, Log.LogSource _source, string _log)
     {
         Log log = new(_severity, _source, _log);
 
@@ -71,12 +69,14 @@ public class NilesCommander : IDisposable
         LogProvided?.Invoke(_log);
     }
 
-    public void Dispose()
+    public void Close()
     {
-        foreach (IInputComponent input_component in inputs)
-            input_component.Dispose();
+        foreach (IComponent component in components)
+        {
+            if (component is IInputComponent input_component)
+                input_component.CommandProvided -= OnCommandProvided;
 
-        foreach (IOutputComponent output_component in outputs)
-            output_component.Dispose();
+            component.Close();
+        }
     }
 }

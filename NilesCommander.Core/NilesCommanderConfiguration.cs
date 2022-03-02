@@ -1,6 +1,5 @@
-﻿namespace NilesCommander.Core
+﻿namespace NilesCommander.Core;
+
+public class NilesCommanderConfiguration
 {
-    public class NilesCommanderConfiguration
-    {
-    }
 }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using Konsole;
+﻿using Konsole;
 using NilesCommander.Core;
 using NilesCommander.Core.Components;
 
@@ -18,13 +15,7 @@ public class TerminalComponent : IInputComponent, IOutputComponent
     private IConsole logsWindow;
     private IConsole commandWindow;
 
-    private string CommandBuffer
-    {
-        get => commandBuffer;
-        set => commandBuffer = value;
-    }
-
-    private string commandBuffer = string.Empty;
+    private string CommandBuffer { get; set; } = string.Empty;
 
     public void SetComponentConfiguration(ComponentConfiguration _configuration)
     {
@@ -52,9 +43,11 @@ public class TerminalComponent : IInputComponent, IOutputComponent
         WriteLog(_log);
     }
 
-    public void Dispose()
+    public bool Close()
     {
         cancellationTokenSource.Dispose();
+
+        return true;
     }
 
     private void ConsoleLoop()
@@ -68,7 +61,7 @@ public class TerminalComponent : IInputComponent, IOutputComponent
         switch (_key.Key)
         {
             case ConsoleKey.Enter:
-                if (string.IsNullOrEmpty(commandBuffer))
+                if (string.IsNullOrEmpty(CommandBuffer))
                     break;
                 CommandProvided?.Invoke(CommandBuffer);
                 CommandBuffer = string.Empty;
@@ -78,7 +71,7 @@ public class TerminalComponent : IInputComponent, IOutputComponent
                     CommandBuffer = CommandBuffer.Remove(CommandBuffer.Length - 1);
                 break;
             case ConsoleKey.Escape:
-                commandBuffer = string.Empty;
+                CommandBuffer = string.Empty;
                 break;
             default:
                 if (_key.KeyChar != '\0' && _key.KeyChar != '\t')
@@ -92,7 +85,7 @@ public class TerminalComponent : IInputComponent, IOutputComponent
     private void UpdateCommandBufferDisplay()
     {
         commandWindow.Clear(ConsoleColor.DarkCyan);
-        commandWindow.Write("> " + commandBuffer);
+        commandWindow.Write("> " + CommandBuffer);
         Console.SetWindowPosition(0, 0);
     }
 

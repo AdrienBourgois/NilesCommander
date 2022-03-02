@@ -1,7 +1,6 @@
-﻿namespace NilesCommander.Core.Components
+﻿namespace NilesCommander.Core.Components;
+
+public class ComponentConfiguration
 {
-    public class ComponentConfiguration
-    {
-        public Log.LogSeverity minimumSeverity = Log.LogSeverity.Log;
-    }
+    public Log.LogSeverity minimumSeverity = Log.LogSeverity.Log;
 }
