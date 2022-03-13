@@ -89,7 +89,7 @@ public class TerminalComponent : IInputComponent, IOutputComponent
         Console.SetWindowPosition(0, 0);
     }
 
-    public void WriteLog(Log _log)
+    private void WriteLog(Log _log)
     {
         ConsoleColor log_color = _log.Severity switch
         {
