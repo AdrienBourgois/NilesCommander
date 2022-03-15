@@ -1,9 +1,36 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <Nullable>disable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<Nullable>disable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+
+		<VersionPrefix>0.0.1</VersionPrefix>
+		<VersionSuffix>dev</VersionSuffix>
+
+		<Authors>Adrien Bourgois</Authors>
+		<Copyright>$(Authors)</Copyright>
+
+		<PackageProjectUrl>https://github.com/AdrienBourgois/NilesCommander</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/AdrienBourgois/NilesCommander</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageIcon>NilesCommander_Icon_Small.png</PackageIcon>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<Description>Core package for NilesCommander, tool that allow to provide both input (commands) and output (logs) for applications</Description>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Include="..\Icons\NilesCommander_Icon_Small.png">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	  <None Include="..\README.md">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	</ItemGroup>
 
 </Project>

@@ -1,17 +1,44 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <Nullable>disable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<Nullable>disable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
 
-  <ItemGroup>
-    <PackageReference Include="Goblinfactory.Konsole" Version="6.2.2" />
-  </ItemGroup>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 
-  <ItemGroup>
-    <ProjectReference Include="..\NilesCommander.Core\NilesCommander.Core.csproj" />
-  </ItemGroup>
+		<VersionPrefix>0.0.1</VersionPrefix>
+		<VersionSuffix>dev</VersionSuffix>
+
+		<Authors>Adrien Bourgois</Authors>
+		<Copyright>$(Authors)</Copyright>
+
+		<PackageProjectUrl>https://github.com/AdrienBourgois/NilesCommander</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/AdrienBourgois/NilesCommander</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageIcon>NilesCommander_Icon_Small.png</PackageIcon>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<Description>Additional package for NilesCommander, tool that allow to provide both input (commands) and output (logs) for applications. This package add terminal support.</Description>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Include="..\Icons\NilesCommander_Icon_Small.png" Link="NilesCommander_Icon_Small.png">
+	    <PackagePath>\</PackagePath>
+	    <Pack>True</Pack>
+	  </None>
+	  <None Include="..\README.md" Link="README.md">
+	    <PackagePath>\</PackagePath>
+	    <Pack>True</Pack>
+	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Goblinfactory.Konsole" Version="6.2.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\NilesCommander.Core\NilesCommander.Core.csproj" />
+	</ItemGroup>
 
 </Project>
