@@ -1,0 +1,15 @@
+<Project>
+	<PropertyGroup>
+		<BaseOutputPath>$(SolutionDir)Builds\$(Configuration)</BaseOutputPath>
+		<OutputPath>$(BaseOutputPath)</OutputPath>
+		<BaseIntermediateOutputPath>$(SolutionDir)Intermediate\$(Configuration)</BaseIntermediateOutputPath>
+		<IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
+		<MSBuildProjectExtensionsPath>$(SolutionDir)\Intermediate\$(Configuration)\NuGet\$(MSBuildProjectName)</MSBuildProjectExtensionsPath>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+
+		<RestoreOutputPath Condition="'$(RestoreOutputPath)' == ''">$(MSBuildProjectExtensionsPath)</RestoreOutputPath>
+		<PackageOutputPath Condition="'$(PackageOutputPath)' == ''">$(BaseOutputPath)\Packages\</PackageOutputPath>
+		<NuspecOutputPath Condition="'$(NuspecOutputPath)' == ''">$(BaseIntermediateOutputPath)\</NuspecOutputPath>
+	</PropertyGroup>
+</Project>

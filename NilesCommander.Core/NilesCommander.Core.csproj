@@ -11,7 +11,7 @@
 		<VersionSuffix>dev</VersionSuffix>
 
 		<Authors>Adrien Bourgois</Authors>
-		<Copyright>$(Authors)</Copyright>
+		<Copyright>Copyright (c) $(Authors) 2022</Copyright>
 
 		<PackageProjectUrl>https://github.com/AdrienBourgois/NilesCommander</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/AdrienBourgois/NilesCommander</RepositoryUrl>
@@ -20,6 +20,8 @@
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<Description>Core package for NilesCommander, tool that allow to provide both input (commands) and output (logs) for applications</Description>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+
+		<UseCommonOutputDirectory>True</UseCommonOutputDirectory>
 	</PropertyGroup>
 
 	<ItemGroup>

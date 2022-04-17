@@ -12,9 +12,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NilesCommander.Sample", "Ni
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NilesCommander.Terminal", "NilesCommander.Console\NilesCommander.Terminal.csproj", "{E3ADE000-2A2D-407A-90FE-383F17699C01}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NilesCommander.WinForm", "NilesCommander.WinForm\NilesCommander.WinForm.csproj", "{213DD112-DFC1-46EC-80F2-8AF7911AC6AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NilesCommander.WinForm", "NilesCommander.WinForm\NilesCommander.WinForm.csproj", "{213DD112-DFC1-46EC-80F2-8AF7911AC6AD}"
 	ProjectSection(ProjectDependencies) = postProject
 		{53524127-C8B9-49A7-B978-836003E17C43} = {53524127-C8B9-49A7-B978-836003E17C43}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{12806B6D-E124-45A8-A680-012F95362FC7}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
 	EndProjectSection
 EndProject
 Global
